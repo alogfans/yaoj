@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Status|YaOJ2 {% endblock %}
+
+{% block nav-status %} class = "active" {% endblock %}
+
+{% block content %}
+
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Run Id</th>
+        <th>Username</th>
+        <th>Problem</th>
+        <th>Submit Time</th>
+        <th>Current Status</th>
+        <th>Execute Time</th>
+        <th>Execute Memory</th>
+    </tr>
+</thead>
+<tbody>
+{% for statu in status %}
+    <tr>
+        <td>{{ statu.id }}</td>
+        <td>{{ statu.commit_user.username }}</td>
+        <td><a href="/problem/show/{{ statu.commit_problem.id }}">
+            [{{ statu.commit_problem.id|add:1000 }}] {{ statu.commit_problem.title }} </a> </td>
+        <td>{{ statu.commit_date }}</td>
+        {% ifequal statu.commit_user.username username %}
+        <td><a href="/status/{{ statu.id }}">{{ statu.commit_status }}</a></td>
+        {% else %}
+            {% ifequal username 'Admin' %}
+                 <td><a href="/status/{{ statu.id }}">{{ statu.commit_status }}</a></td>
+            {% else %}
+            <td>{{ statu.commit_status }}</td>
+        {% endifequal %}
+        {% endifequal %}
+        {% ifequal statu.cost_time_ms -1 %}
+        <td></td>
+        <td></td>
+        {% else %}
+        <td>{{ statu.cost_time_ms }} ms</td>
+        <td>{{ statu.cost_memory_mb }} MB</td>
+        {% endifequal %}
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

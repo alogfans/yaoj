@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Problem|YaOJ2 {% endblock %}
+
+{% block nav-problems %} class = "active" {% endblock %}
+
+{% block content %}
+
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th width="4%"></th>
+        <th width="10%">Problem Id</th>
+        <th width="60%">Problem Title</th>
+        <th width="6%">Accepted</th>
+        <th width="10%">Submissions</th>
+    </tr>
+</thead>
+<tbody>
+{% for problem in problems %}
+    <tr>
+        <td>
+        {% for id in accepted %}
+            {% ifequal problem.id id %}
+                <span class="glyphicon glyphicon-ok"></span>
+            {% endifequal %}
+        {% endfor %}
+        </td>
+    <td class="pid ">{{ problem.id|add:1000 }}</td>
+    <td class="ptitle"><a href="/problem/show/{{ problem.id }}">{{ problem.title }}</a></td>            
+	<td>{{ problem.ac_count }} </td>
+	<td>{{ problem.su_count }}</td>
+
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load to_html %} 
+{% block title %} Announcement|YaOJ2 {% endblock %}
+{% block nav-blog %} class = "active" {% endblock %}
+{% block content %}
+
+<style>
+.blog-main {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+</style>
+<div class="col-sm-9 blog-main">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        {% for post in posts %}
+        <div class="page-header">
+            <h2>{{ post.title }} <small>{{ post.author }} {{ post.modified_time }} </small></h2>
+        </div>
+        <blockquote>
+            <p>{{ post.abstract }}</p>
+        </blockquote>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ post.id }}" aria-expanded="true" aria-controls="collapseOne">
+                Full Text
+                </a>
+                </h5>
+            </div>
+            <div id="collapse{{ post.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ post.id }}">
+                <div class="panel-body">
+                    {{ post.body|toHtml|safe }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="col-sm-3">
+    <h4>Contact the author</h4>
+    <p><strong>Alogfans</strong></p>
+    <p>A student learning Computer Science</p>
+    <p>Github repo: <a href="https://github.com/alogfans">https://github.com/alogfans</a></p>
+    <p>Personal website: <a href="http://alogfans.info">http://alogfans.info</a></p>
+    <p></p>
+</div>
+{% endblock %}

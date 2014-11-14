@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>{{ post.title }}</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Author</td>
+                            <td>{{ post.author }} </td>
+                        </tr>
+                        <tr>
+                            <td>Created Time</td>
+                            <td>{{ post.created_time }} </td>
+                        </tr>
+                        <tr>
+                            <td>Modified Time</td>
+                            <td>{{ post.modified_time }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    {{ build_page|safe }}
+
+{% endblock %}

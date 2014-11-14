@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Administrator|YaOJ2 {% endblock %}
+
+{% block nav-admin %} class = "active" {% endblock %}
+
+{% block content %}
+<div class="row">
+    
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="/admin" class="list-group-item{% block nav-admin-srvinfo %} {% endblock %}">Server</a>
+            <a href="/admin/problem" class="list-group-item{% block nav-admin-problem %} {% endblock %}">Problems</a>
+            <a href="/admin/user" class="list-group-item{% block nav-admin-user %} {% endblock %}">Users</a>
+            <a href="/admin/blog" class="list-group-item{% block nav-admin-blog %} {% endblock %}">Blogs</a>
+        </div>
+        
+    </div>
+
+    <div class="col-md-9">
+        {% block admin-content %}
+
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

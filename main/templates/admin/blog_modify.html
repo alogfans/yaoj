@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% block nav-admin-blog %} active {% endblock %}
+
+{% block admin-content %}
+    <form id="mod_form" role="form" action="" method="post" onSubmit="transfer()">
+        <div class="form-group">
+
+            <div class="row">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                                <td width="30%">Title</td>
+                                <td>{{ form.title }} </td>
+                            </tr>
+                            <tr>
+                                <td>Author</td>
+                                <td>{{ form.author }} </td>
+                            </tr>                            
+                            <tr>
+                                <td>Abstract</td>
+                                <td>{{ form.abstract }} </td>
+                            </tr>                                
+                            <tr>
+                                <td>Text <br>
+                                    (support Markdown 
+                                    and LaTeX)</td>
+                                <td>
+                                    <div id="editor"></div>
+                                    {{ form.body_md }} 
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+            </div>
+            <center>
+                <button type="submit" class="btn btn-success">Add this blog</button>
+            </center>
+        </div>
+    </form>
+
+    <script src="/static/ace-editor/ace.js" type="text/javascript" charset="utf-8"> </script>
+
+    <script type="text/javascript">
+
+        var editor = ace.edit("editor");
+        var textarea = document.getElementById("id_body_md");
+
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/markdown");
+        editor.getSession().setValue(textarea.value);
+
+        function transfer()
+        {
+            textarea.value = editor.getSession().getValue();
+        }
+    </script>
+
+    <style type="text/css">
+    #editor {
+        position: relative;
+        width:100%;
+        height:380px;
+        font-size: 14px !important;
+    }
+  </style>
+{% endblock %}

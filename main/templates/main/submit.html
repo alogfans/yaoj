@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Submit|YaOJ2 {% endblock %}
+
+{% block nav-problems %} class = "active" {% endblock %}
+
+{% block content %}
+<h2>Submission for Problem (Id: {{ problem.id }}) {{ problem.title }}</h2>
+
+<form id="mod_form" role="form" action="" method="post" onSubmit="transfer()">
+
+      <div class="form-group">
+        <label for="blog_author_entry">Paste your program here. </label>
+        {{ form.source }}
+        <div id="editor"></div>
+        {{ form.source.errors }}
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit Now!</button>
+      <p></p>
+</form>
+    <script src="http://cdn.bootcss.com/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+        var editor = ace.edit("editor");
+        var textarea = document.getElementById("id_source");
+
+        editor.setTheme("ace/theme/eclipse");
+        editor.getSession().setMode("ace/mode/c_cpp");
+        editor.getSession().setValue(textarea.value);
+
+        function transfer()
+        {
+            textarea.value = editor.getSession().getValue();
+        }
+    </script>
+
+    <style type="text/css">
+    #editor {
+        position: relative;
+        width:605px;
+        height:380px;
+        font-size: 14px !important;
+    }
+    </style>
+
+{% endblock %}

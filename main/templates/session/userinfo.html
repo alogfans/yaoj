@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} User Infomation {% endblock %}
+
+{% block content %}
+    <h3>{{ users.username }}
+{% ifequal username users.username %}
+    <small><a href="/reset">Change Password</a></small>
+{% endifequal %}
+</h3>
+
+    <div class="row basic-info">
+    <div class="col-sm-7">
+    <ul class="nav nav-pills nav-stacked">
+        <li><a><i class="glyphicon glyphicon-home"></i> School/Department: {{ users.department }}</a></li>
+        <li><a><i class="glyphicon glyphicon-time"></i> Register Time: {{ users.register_date }}</a></li>
+        <li><a><i class="glyphicon glyphicon-time"></i> Last Login: {{ users.last_activity_date }}</a></li>
+    </ul>
+    </div>
+    <div class="col-sm-5">
+
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                  <th>Solved Problems</th>
+                  <th>Total Attempts</th>
+                  <th>Ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+{% for item in rank %}
+{% ifequal item.id users.id %}
+              <tr>
+		  <td>{{ item.ac_count }}</td>
+	          <td>{{ item.su_count }}</td>
+{% ifequal item.su_count 0 %}
+		  <td> -- </td>
+{% else %}
+	          <td>{% widthratio item.ac_count item.su_count 100 %} %</td>
+{% endifequal %}
+              </tr>
+{% endifequal %}
+{% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">Accepted problems</div>
+        <div class="panel-body">
+            {% for id in accepted %}
+                <a class="btn btn-success" href="#">{{ id }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

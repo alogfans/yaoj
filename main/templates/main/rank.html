@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %} Rank|YaOJ2 {% endblock %}
+
+{% block nav-rank %} class = "active" {% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped">
+	<thead>
+	<tr>
+		<th>Rank</th>
+		<th>Username</th>
+		<th>School/Department</th>
+		<th>Accepted</th>
+		<th>Submissions</th>
+		<th>Ratio</th>
+	</tr>
+	</thead>
+	<tbody>
+{% for item in rank %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+	<td>{{ item.username }}</td>
+	<td>{{ item.department }}</td>
+	<td>{{ item.ac_count }}</td>
+	<td>{{ item.su_count }}</td>
+{% ifequal item.su_count 0 %}
+	<td> -- </td>
+{% else %}
+	<td>{% widthratio item.ac_count item.su_count 100 %} %</td>
+{% endifequal %}
+</tr>
+{% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

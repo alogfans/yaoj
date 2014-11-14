@@ -1,0 +1,19 @@
+    <button class="btn btn-danger" data-toggle="modal" data-target="#myModal_{{ post.id }}">Remove</button>
+    <div class="modal fade" id="myModal_{{ post.id }}" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h4 class="modal-title" id="myModalLabel"> Dangerous Operation </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Your selected article <strong>{{ post.title }}</strong> will be removed and unable to restore!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close Window</button>
+                    <a class="btn btn-danger" href="/admin/blog/remove/{{ post.id }}" role="button">Remove</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>

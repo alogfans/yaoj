@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+{% block nav-admin-problem %} active {% endblock %}
+{% block admin-content %}
+<a class="btn btn-info" href="/admin/problem/new" role="button">Add New Problem</a>
+    
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Problem Id</th>
+        <th>Problem Title</th>
+	<th>Post Date</th>
+        <th>Operation</th>
+    </tr>
+</thead>
+<tbody>
+{% for problem in problems %}
+    <tr>
+        <td>{{ problem.id|add:1000 }}</td>
+        <td><a href="/problem/show/{{ problem.id }}">{{ problem.title }}</a></td>
+	<td>{{ problem.post_date }} </td>
+        <td>
+             <a class="btn btn-warning" href="/admin/problem/modify/{{ problem.id }}" role="button">Modify & Rejudge</a>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'admin/base.html' %}
+
+{% block nav-admin-user %} active {% endblock %}
+{% block admin-content %}
+{% if info %}
+<div class="alert alert-info">{{ info|safe }}</div>
+{% endif %}
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Department</th>
+                <th>Register Time</th>
+                <th>Last Login Time</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td><a href="/userinfo/{{ user.id }}"> {{ user.username }}</a></td>
+                <td>{{ user.department }}</td>
+                <td>{{ user.register_date }}</td>
+                <td>{{ user.last_activity_date }}</td>
+                <td><a class="btn btn-warning" href="/admin/user/reset/{{ user.id }}" role="button">Reset Password</a></td>
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+
+{% endblock %}

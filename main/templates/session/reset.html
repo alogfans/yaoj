@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Reset Password {% endblock %}
+{% block non-nav %} {% endblock %}
+
+{% block content %}
+    <link href="/static/css/login.css" rel="stylesheet">
+        <form class="form-signin" role="form" method="post" enctype="multipart/form-data">
+        <h2 class="form-signin-heading">Reset password <br> <small>{{ username  }}</small> </h2>
+        {{ uf.old_password }}
+        {{ uf.new_password }}
+        {{ uf.new_password_check }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Commit</button>
+    </form>
+{% endblock %}

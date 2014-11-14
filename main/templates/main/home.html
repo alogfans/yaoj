@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} Home|YaOJ2 {% endblock %}
+
+{% block nav-home %} class = "active" {% endblock %}
+
+{% block content %}
+<link href="/static/css/landing.css" rel="stylesheet">
+
+</div>
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row centered">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>Yet Another OJ 2</h1>
+                    <h2>more than you think</h2>
+                </div>
+            </div><!-- row -->
+        </div><!-- container -->
+    </div><!-- headerwrap -->
+    <div class="container w">
+        <div class="row centered">
+            <center><h3>What's new inside this version?</h3></center>
+            <br><br>
+            <div class="col-lg-4">
+                <h4>Clear Debug Information</h4>
+                <p>We modified the structure of whole system and rewrote some code, and now you can get more information to fix the mistake, which leads this OJ a helpful tools. Administrator can enable or disenable this function when neccessary.</p>
+            </div><!-- col-lg-4 -->
+
+            <div class="col-lg-4">
+                <h4>Style Checker</h4>
+                <p>As you know, if a programmer cannot write fregrent code, he may be hired by some companies. However most people practice only the correctness and unnotice the importantance of code style. We imported <code>cpplint</code> powered by Google Inc. to help you discover the inability of your code, and improve it.</p>
+            </div><!-- col-lg-4 -->
+
+            <div class="col-lg-4">
+                <h4>Interface-based Programming</h4>
+                <p>We add this style programming practice, so that you don't need to care more about the I/O details, just finish one function and your job is done. Also you must use given data structure of particular method, otherwise your code cannot be even compiled!</p>
+            </div><!-- col-lg-4 -->
+        </div><!-- row -->
+        <br>
+        <br>
+    </div><!-- container -->
+<div class="container">
+
+
+{% endblock %}

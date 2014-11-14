@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <link href="/static/css/blog.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Top nav grid < written by sub-base> -->
+    {% block non-nav %}
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">Yet Another OJ</a>        
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li {% block nav-home %} {% endblock %} ><a href="/">Home</a></li>
+            <li {% block nav-blog %} {% endblock %} ><a href="/announcement">Announcement</a></li>
+            <li {% block nav-problems %} {% endblock %} ><a href="/problem">Problems</a></li>
+            <li {% block nav-status %} {% endblock %} ><a href="/status">Status</a></li>
+            <li {% block nav-rank %} {% endblock %} ><a href="/rank">Rank</a></li>
+
+            {% ifequal username 'Admin' %}
+            <li {% block nav-admin %} {% endblock %} ><a href="/admin">Administrator</a></li>
+            {% endifequal %}
+        </ul>
+    {% if username %}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/userinfo">{{ username }}</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    {% else %}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    {% endif %}
+    </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    {% endblock %}
+    <!-- Main container -->
+    <div class="container">
+      {% if errors %}
+      <div class="alert alert-danger" role="alert">
+        <strong>Error Occur! </strong> {{ errors }}
+      </div>
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted">Copyright Alogfans, 2014. All right reserved.</p>
+      </div>
+    </div>
+    <script src="/static/js/bootswatch.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>

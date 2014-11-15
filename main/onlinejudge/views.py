@@ -108,6 +108,7 @@ def oj_submit(request, pid):
 def oj_admin_main(request):
     if cmp(request.COOKIES.get('username'),'Admin') != 0:
         return render_to_response('admin/forbidden.html', {'username': request.COOKIES.get('username'), })
+
     info =  "Server Time  : " + str(datetime.now()) + "\n"
     info += "CPU (%)      : " + str(psutil.cpu_percent()) + "\n"
     info += "Memory (%)   : " + str(psutil.virtual_memory().percent);

@@ -26,8 +26,8 @@
             <td>{{ statu.commit_date }}</td>
             <td>{{ statu.commit_status }}</td>
             {% ifequal statu.cost_time_ms -1 %}
-            <td>N/A</td>
-            <td>N/A</td>
+            <td>--</td>
+            <td>--</td>
             {% else %}
             <td>{{ statu.cost_time_ms }} ms</td>
             <td>{{ statu.cost_memory_mb }} MB</td>

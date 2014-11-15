@@ -17,7 +17,7 @@ int download(struct Submit *submission, int submission_id)
     chdir("./sandbox");
 
     char zipped_file[COMMAND_LINE_BUFFER];
-    sprintf(zipped_file, "unzip ../../main/media/%s -o -d . > /dev/null", submission->check_file);
+    sprintf(zipped_file, "unzip -o ../../main/media/%s -d . > /dev/null", submission->check_file);
     system(zipped_file);
 
     FILE *fp = fopen("Main.cpp", "w");
